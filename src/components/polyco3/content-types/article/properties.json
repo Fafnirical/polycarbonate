@@ -1,0 +1,22 @@
+{
+	"type": "article",
+	"name": "Article",
+	"description": "Articles are often used for information that is updated frequently, such as blog posts or press releases.",
+	"fields": {
+		"subtitle": {
+			"required": false,
+			"schema": "string"
+		},
+		"body": {
+			"required": true,
+			"schema": "text"
+		},
+		"author": {
+			"required": false,
+			"schema": "user"
+		}
+	},
+	"inherits": [
+		"content-type"
+	]
+}

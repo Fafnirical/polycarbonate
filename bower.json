@@ -1,0 +1,33 @@
+{
+  "name": "polycarbonate",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    {
+      "name": "Wade Burelbach",
+      "email": "wade.burelbach@gmail.com",
+      "homepage": "http://developing.ninja/"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fafnirical/polycarbonate.git"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.5",
+    "core-ajax": "Polymer/core-ajax#~0.5.5",
+    "moment": "~2.10.2"
+  },
+  "install": {
+    "path": "dist/lib"
+  }
+}

@@ -1,0 +1,29 @@
+{
+	"type": "content-type",
+	"name": "Content Type",
+	"fields": {
+		"path": {
+			"display": "Path",
+			"required": true,
+			"schema": "uri"
+		},
+		"title": {
+			"display": "Title",
+			"required": true,
+			"schema": "string"
+		},
+		"created-date": {
+			"display": "Date/Time Created",
+			"required": true,
+			"schema": "datetime"
+		},
+		"published-date": {
+			"display": "Date/Time Published",
+			"required": true,
+			"schema": "datetime"
+		}
+	},
+	"inherits": [
+		"polyco3"
+	]
+}

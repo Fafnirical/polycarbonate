@@ -1,0 +1,16 @@
+{
+	"type": "polyco3",
+	"name": "Polycarbonate",
+	"fields": {
+		"system-id": {
+			"required": true,
+			"auto": true,
+			"schema": "integer"
+		},
+		"revision-id": {
+			"required": true,
+			"auto": true,
+			"schema": "integer"
+		}
+	}
+}
