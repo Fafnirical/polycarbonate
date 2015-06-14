@@ -1,0 +1,13 @@
+{
+	"type": "utility-type",
+	"name": "Utility Type",
+	"fields": {
+		"title": {
+			"required": false,
+			"schema": "string"
+		}
+	},
+	"inherits": [
+		"polyco3"
+	]
+}

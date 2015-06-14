@@ -1,0 +1,15 @@
+[
+	{
+		"type": "article",
+		"title": "Title",
+		"published-date": "1431243862567",
+		"body": "This is a test."
+	},
+	{
+		"type": "article",
+		"title": "Title's a test",
+		"subtitle": "a subtitle",
+		"published-date": "1431277535609",
+		"body": "This is just for testing Polycarbonate's escaping."
+	}
+]

@@ -1,0 +1,10 @@
+{
+	"type": "view",
+	"name": "View",
+	"description": "Views are used to display a dynamic list of other components. For example, a View could be used to display a list of the most recent articles.",
+	"fields": {
+	},
+	"inherits": [
+		"utility-type"
+	]
+}

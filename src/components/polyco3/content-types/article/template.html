@@ -7,17 +7,17 @@
 		<article itemscope itemtype="http://schema.org/Article">
 			<header>
 				<!-- Title and Subtitle -->
-				<template if="[[article.title]]">
+				<template if="{{article.title}}">
 					<h1 id="title" itemprop="name">
 						{{article.title}}
-						<template if="[[article.subtitle]]">
+						<template if="{{article.subtitle}}">
 							<span id="subtitle">{{article.subtitle}}</span>
 						</template>
 					</h1>
 				</template>
 
 				<!-- Author -->
-				<template if="[[article.author]]">
+				<template if="{{article.author}}">
 					<p id="author">
 						by
 						<span itemprop="author">{{article.author}}</span>
@@ -25,16 +25,16 @@
 				</template>
 
 				<!-- Time -->
-				<template if="[[article.time]]">
+				<template if="{{article['published-date']}}">
 					<p id="time">
-						<time id="time-human" itemprop="datePublished" datetime="{{article.time}}" on-mouseover="{{onTimeFocused}}" on-focus="{{onTimeFocused}}" on-mouseout="{{onTimeUnfocused}}" on-blur="{{onTimeUnfocused}}" tabindex="0">{{article.humanTime}}</time>
+						<time id="time-human" itemprop="datePublished" datetime="{{article.machineTime}}" on-mouseover="{{onTimeFocused}}" on-focus="{{onTimeFocused}}" on-mouseout="{{onTimeUnfocused}}" on-blur="{{onTimeUnfocused}}" tabindex="0">{{article.humanTime}}</time>
 						<time id="time-actual" hidden?="{{!timeFocused}}">{{article.humanTimeHover}}</time>
 					</p>
 				</template>
 			</header>
 
 			<!-- Body -->
-			<template if="[[article.body]]">
+			<template if="{{article.body}}">
 				<div id="body" tabindex="0">
 					{{article.body}}
 				</div>
@@ -46,15 +46,19 @@
 			article: {
 				"timeFocused": false
 			},
-			ready: function() {
-				var momentTime = moment(this.article.time);
+			domReady: function() {
+				this.shadowRoot.getElementById('title').innerHTML = this.article.title + (this.shadowRoot.getElementById('subtitle') ? this.shadowRoot.getElementById('subtitle').outerHTML : "");
+				this.shadowRoot.getElementById('body').innerHTML = this.article.body;
+
+				var momentTime = moment(parseInt(this.article['published-date']));
+				this.article.machineTime = momentTime.toISOString();
 				this.article.humanTime = momentTime.fromNow();
 				this.article.humanTimeHover = momentTime.format('LL');
 			},
-			onTimeFocused: function() {
+			onTimeFocused: function(event) {
 				this.timeFocused = true;
 			},
-			onTimeUnfocused: function() {
+			onTimeUnfocused: function(event) {
 				this.timeFocused = false;
 			}
 		});
