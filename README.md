@@ -17,3 +17,7 @@ To run the prototype, simply run:
 ```
 npm start
 ```
+
+Once it's running, you can open your web browser to [http://localhost:3000/](http://localhost:3000/) to test it out.
+
+Editing [posts.json](src/posts.json) will change what gets displayed.
