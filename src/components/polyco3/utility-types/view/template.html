@@ -1,27 +1,13 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 <link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="item-template.html">
 
 <dom-module id="polyco3-view">
-	<style>
-		#ajax {
-			display: none;
-		}
-
-		#view {
-			@apply(--layout-vertical);
-		}
-	</style>
 
 	<template>
-		<iron-ajax id="ajax" auto url="{{url}}" on-response="handleResponse" method="GET" handle-as="json"></iron-ajax>
+		<iron-ajax id="ajax" auto url="{{url}}" on-response="handleResponse" method="GET" handle-as="json" last-response="{{data}}"></iron-ajax>
 
-		<div id="view">
-			<template is="dom-repeat" items="{{items}}">
-				<polyco3-view-item item="{{item}}"></polyco3-view-item>
-			</template>
-		</div>
+		<div id="view"></div>
 	</template>
 
 	<script>
@@ -36,7 +22,16 @@
 			},
 
 			handleResponse: function(request) {
-				this.items = request.detail.response;
+				var that = this;
+
+				request.detail.response.forEach(function(item, index, array) {
+					that.importHref('/components/polyco3/content-types/' + item.type + '/template.html', function() {
+						var viewItem = document.createElement('polyco3-' + item.type);
+						viewItem.setAttribute(item.type, JSON.stringify(item));
+						that.$.view.appendChild(viewItem);
+
+					});
+				});
 			}
 		});
 	</script>
