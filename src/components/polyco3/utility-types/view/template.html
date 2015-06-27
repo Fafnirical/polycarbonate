@@ -27,9 +27,8 @@
 				request.detail.response.forEach(function(item, index, array) {
 					that.importHref('/components/polyco3/content-types/' + item.type + '/template.html', function() {
 						var viewItem = document.createElement('polyco3-' + item.type);
-						viewItem.setAttribute(item.type, JSON.stringify(item));
+						viewItem[item.type] = item;
 						that.$.view.appendChild(viewItem);
-
 					});
 				});
 			}
