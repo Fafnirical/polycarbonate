@@ -1,26 +1,26 @@
 {
-	"name": "polycarbonate",
-	"version": "0.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"start": "node ./bin/www"
-	},
-	"author": {
-		"name": "Wade Burelbach",
-		"email": "wade.burelbach@gmail.com",
-		"url": "http://developing.ninja/"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Fafnirical/polycarbonate.git"
-	},
-	"license": "MIT",
-	"devDependencies": {
-		"debug": "^2.1.3",
-		"express": "^4.12.3",
-		"gulp": "^3.8.11",
-		"gulp-watch": "^4.2.1",
-		"morgan": "^1.5.2"
-	}
+  "name": "polycarbonate",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "author": {
+    "name": "Wade Burelbach",
+    "email": "wade.burelbach@gmail.com",
+    "url": "http://developing.ninja/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fafnirical/polycarbonate.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "~1.4.1",
+    "debug": "~2.2.0",
+    "express": "~4.13.0",
+    "gulp": "~3.9.0",
+    "gulp-watch": "~4.2.4",
+    "morgan": "~1.6.0"
+  }
 }
