@@ -27,9 +27,7 @@
 			</header>
 
 			<!-- Body -->
-			<template is="dom-if" if="{{article.body}}">
-				<div id="body" tabindex="0">{{article.body}}</div>
-			</template>
+			<div id="body" is="dom-if" if="{{article.body}}" hidden="{{!article.body}}" tabindex="0">{{article.body}}</div>
 		</article>
 	</template>
 
@@ -37,7 +35,6 @@
 		Polymer({
 			is: 'polyco3-article',
 			properties: {
-				article: Object,
 				timeFocused: {
 					type: Boolean,
 					value: false
