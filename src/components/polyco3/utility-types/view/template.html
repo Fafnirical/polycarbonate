@@ -17,9 +17,11 @@
 	<template>
 		<iron-ajax id="ajax" auto url="{{url}}" on-response="handleResponse" method="GET" handle-as="json"></iron-ajax>
 
-		<template id="view" is="dom-repeat" items="{{items}}">
-			<polyco3-view-item item="{{item}}"></polyco3-view-item>
-		</template>
+		<div id="view">
+			<template is="dom-repeat" items="{{items}}">
+				<polyco3-view-item item="{{item}}"></polyco3-view-item>
+			</template>
+		</div>
 	</template>
 
 	<script>
