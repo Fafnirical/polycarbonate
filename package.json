@@ -1,10 +1,7 @@
 {
   "name": "polycarbonate",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
-  "scripts": {
-    "start": "node ./bin/www"
-  },
   "author": {
     "name": "Wade Burelbach",
     "email": "wade.burelbach@gmail.com",
@@ -22,5 +19,8 @@
     "gulp": "~3.9.0",
     "gulp-watch": "~4.2.4",
     "morgan": "~1.6.0"
+  },
+  "scripts": {
+    "start": "node ./bin/www"
   }
 }

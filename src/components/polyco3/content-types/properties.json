@@ -12,12 +12,12 @@
 			"required": true,
 			"schema": "string"
 		},
-		"created-date": {
+		"createdDate": {
 			"display": "Date/Time Created",
 			"required": true,
 			"schema": "datetime"
 		},
-		"published-date": {
+		"publishedDate": {
 			"display": "Date/Time Published",
 			"required": true,
 			"schema": "datetime"

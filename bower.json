@@ -1,8 +1,7 @@
 {
   "name": "polycarbonate",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
-  "main": "index.js",
   "authors": [
     {
       "name": "Wade Burelbach",
@@ -23,9 +22,10 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#~0.5.5",
-    "core-ajax": "Polymer/core-ajax#~0.5.5",
-    "moment": "~2.10.2"
+    "polymer": "Polymer/polymer#~1.0.0",
+    "iron-ajax": "PolymerElements/iron-ajax#~1.0.2",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.0.2",
+    "moment": "~2.10.3"
   },
   "install": {
     "path": "dist/lib"

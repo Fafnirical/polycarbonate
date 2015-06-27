@@ -1,31 +1,42 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
-<link rel="import" href="/bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="item-template.html">
 
-<polymer-element name="polyco3-view" attributes="data url">
+<dom-module id="polyco3-view">
+	<style>
+		#ajax {
+			display: none;
+		}
+
+		#view {
+			@apply(--layout-vertical);
+		}
+	</style>
+
 	<template>
-		<style>
-			#ajax {
-				display: none;
-			}
-		</style>
+		<iron-ajax id="ajax" auto url="{{url}}" on-response="handleResponse" method="GET" handle-as="json"></iron-ajax>
 
-		<core-ajax id="ajax" auto url="{{url}}" on-core-response="{{itemsLoaded}}" method="GET" handleAs="json"></core-ajax>
-
-		<div layout vertical id="view">
-			<template repeat="{{item in items}}">
-				<polyco3-view-item item="{{item}}"></polyco3-view-item>
-			</template>
-		</div>
+		<template id="view" is="dom-repeat" items="{{items}}">
+			<polyco3-view-item item="{{item}}"></polyco3-view-item>
+		</template>
 	</template>
+
 	<script>
-		Polymer('polyco3-view', {
-			created: function() {
-				this.items = [];
+		Polymer({
+			is: 'polyco3-view',
+			properties: {
+				url: String,
+				items: {
+					type: Array,
+					value: []
+				}
 			},
-			itemsLoaded: function() {
-				this.items = this.$.ajax.response.slice(0);
+
+			handleResponse: function(request) {
+				this.items = request.detail.response;
 			}
 		});
 	</script>
-</polymer-element>
+
+</dom-module>

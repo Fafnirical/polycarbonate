@@ -1,66 +1,62 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 <script src="/bower_components/moment/moment.js"></script>
 
-<polymer-element name="polyco3-article" attributes="article">
+<dom-module is="polyco3-article">
+
+	<link rel="stylesheet" href="style.css">
+
 	<template>
-		<link rel="stylesheet" href="style.css">
 		<article itemscope itemtype="http://schema.org/Article">
 			<header>
 				<!-- Title and Subtitle -->
-				<template if="{{article.title}}">
-					<h1 id="title" itemprop="name">
-						{{article.title}}
-						<template if="{{article.subtitle}}">
-							<span id="subtitle">{{article.subtitle}}</span>
-						</template>
-					</h1>
-				</template>
+				<h1 id="title" is="dom-if" if="{{article.title}}" itemprop="name">
+					<span>{{article.title}}</span>
+					<span id="subtitle" is="dom-if" if="{{article.subtitle}}">{{article.subtitle}}</span>
+				</h1>
 
 				<!-- Author -->
-				<template if="{{article.author}}">
-					<p id="author">
-						by
-						<span itemprop="author">{{article.author}}</span>
-					</p>
-				</template>
+				<p id="author" is="dom-if" if="{{article.author}}" hidden="{{!article.author}}">by <span itemprop="author">{{article.author}}</span></p>
 
 				<!-- Time -->
-				<template if="{{article['published-date']}}">
-					<p id="time">
-						<time id="time-human" itemprop="datePublished" datetime="{{article.machineTime}}" on-mouseover="{{onTimeFocused}}" on-focus="{{onTimeFocused}}" on-mouseout="{{onTimeUnfocused}}" on-blur="{{onTimeUnfocused}}" tabindex="0">{{article.humanTime}}</time>
-						<time id="time-actual" hidden?="{{!timeFocused}}">{{article.humanTimeHover}}</time>
+				<template is="dom-if" if="{{article.publishedDate}}">
+					<p id="time" hidden="{{!article.publishedDate}}">
+						<time id="time-human" itemprop="datePublished" datetime="{{article.machineTime}}" on-mouseover="handleTimeFocused" on-focus="handleTimeFocused" on-mouseout="handleTimeUnfocused" on-blur="handleTimeUnfocused" tabindex="0">{{article.humanTime}}</time>
+						<time id="time-actual" hidden="{{!timeFocused}}">{{article.humanTimeHover}}</time>
 					</p>
 				</template>
 			</header>
 
 			<!-- Body -->
-			<template if="{{article.body}}">
-				<div id="body" tabindex="0">
-					{{article.body}}
-				</div>
+			<template is="dom-if" if="{{article.body}}">
+				<div id="body" tabindex="0">{{article.body}}</div>
 			</template>
 		</article>
 	</template>
-	<script>
-		Polymer('polyco3-article', {
-			article: {
-				"timeFocused": false
-			},
-			domReady: function() {
-				this.shadowRoot.getElementById('title').innerHTML = this.article.title + (this.shadowRoot.getElementById('subtitle') ? this.shadowRoot.getElementById('subtitle').outerHTML : "");
-				this.shadowRoot.getElementById('body').innerHTML = this.article.body;
 
-				var momentTime = moment(parseInt(this.article['published-date']));
+	<script>
+		Polymer({
+			is: 'polyco3-article',
+			properties: {
+				article: Object,
+				timeFocused: {
+					type: Boolean,
+					value: false
+				}
+			},
+
+			attached: function() {
+				var momentTime = moment(parseInt(this.article.publishedDate));
 				this.article.machineTime = momentTime.toISOString();
 				this.article.humanTime = momentTime.fromNow();
 				this.article.humanTimeHover = momentTime.format('LL');
 			},
-			onTimeFocused: function(event) {
+			handleTimeFocused: function(event) {
 				this.timeFocused = true;
 			},
-			onTimeUnfocused: function(event) {
+			handleTimeUnfocused: function(event) {
 				this.timeFocused = false;
 			}
 		});
 	</script>
-</polymer-element>
+
+</dom-module>

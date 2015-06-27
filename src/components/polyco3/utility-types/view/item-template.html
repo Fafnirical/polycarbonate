@@ -1,21 +1,27 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
-<link rel="import" href="/components/polyco3/content-types/article/template.html">
 
-<polymer-element name="polyco3-view-item" attributes="item">
+<dom-module id="polyco3-view-item">
+
 	<template>
 		<div id="view-item"></div>
 	</template>
+
 	<script>
-		Polymer('polyco3-view-item', {
-			ready: function() {
-				var $ = this.$;
+		Polymer({
+			is: 'polyco3-view-item',
+			properties: {
+				item: Object
+			},
+
+			attached: function() {
 				var item = this.item;
-				Polymer.import(['/components/polyco3/content-types/'+item.type+'/template.html'], function() {
-					var viewItem = document.createElement('polyco3-'+item.type);
-					viewItem.setAttribute('article', JSON.stringify(item).replace(/'/g, '&apos;'));
-					$['view-item'].appendChild(viewItem);
+				this.importHref('/components/polyco3/content-types/' + item.type + '/template.html', function() {
+					var viewItem = document.createElement('polyco3-' + item.type);
+					viewItem.setAttribute('article', JSON.stringify(item));
+					this.appendChild(viewItem);
 				});
 			}
 		});
 	</script>
-</polymer-element>
+
+</dom-module>
